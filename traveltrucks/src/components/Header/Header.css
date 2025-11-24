@@ -1,0 +1,53 @@
+.header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  width: 1440px;
+  height: 72px;
+  border-bottom-width: 1px;
+  padding-top: 24px;
+  padding-right: 64px;
+  padding-bottom: 24px;
+  padding-left: 64px;
+  gap: 450px;
+  angle: 0 deg;
+  opacity: 1;
+
+}
+
+.header-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Figma’ya göre soldan ve sağdan boşluk */
+  padding: 0 64px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.logo span {
+  color: #475467;
+  font-weight: 400;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.link {
+  text-decoration: none;
+  color: #475467;
+  font-size: 16px;
+}
+
+.link.active {
+  color: #E44848;
+  font-weight: 500;
+}
