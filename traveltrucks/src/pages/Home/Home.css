@@ -1,0 +1,63 @@
+/* Taşmayı engelle */
+body {
+  overflow-x: hidden;
+}
+.hero {
+  width: 1440px;
+  height: 696px;
+  background-image: url("hero.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.hero-content {
+  margin-left: 64px;
+  color: white;
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+
+.hero-content {
+  margin-left: 64px;        /* Figma sol boşluk */
+  color: white;
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.hero-btn {
+  padding: 12px 24px;
+  background-color: #E44848;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  background-color: #cc3d3d;
+}

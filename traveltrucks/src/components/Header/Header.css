@@ -1,0 +1,44 @@
+.header {
+  background:rgba(247, 247, 247, 1);
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 64px; /* sadece yatay boşluk */
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* start yerine center */
+  padding: 0; /* ekstra padding kaldırıldı */
+}
+
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #101828;
+}
+
+.logo span {
+  color: #475467;
+  font-weight: 400;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.link {
+  text-decoration: none;
+  color: #475467;
+  font-size: 16px;
+}
+
+.link.active {
+  color: #E44848;
+  font-weight: 500;
+}
