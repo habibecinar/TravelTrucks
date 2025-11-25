@@ -2,28 +2,19 @@
   background: #fff;
   display: flex;
   align-items: center;
-  width: 1440px;
   height: 72px;
-  border-bottom-width: 1px;
-  padding-top: 24px;
-  padding-right: 64px;
-  padding-bottom: 24px;
-  padding-left: 64px;
-  gap: 450px;
-  angle: 0 deg;
-  opacity: 1;
-
+  padding: 0 64px; /* sadece yatay boşluk */
+  border-bottom: 1px solid #eee;
 }
 
 .header-inner {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-
-  /* Figma’ya göre soldan ve sağdan boşluk */
-  padding: 0 64px;
+  align-items: center; /* start yerine center */
+  padding: 0; /* ekstra padding kaldırıldı */
 }
+
 
 .logo {
   font-size: 24px;
