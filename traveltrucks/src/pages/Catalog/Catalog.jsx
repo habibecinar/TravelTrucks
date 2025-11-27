@@ -1,6 +1,49 @@
+import { useEffect, useState } from "react";
 import "./Catalog.css";
 
+// ICON IMPORTS
+import acIcon from "../../assets/icons/AC.png";
+import autoIcon from "../../assets/icons/Automatic.png";
+import kitchenIcon from "../../assets/icons/kitchen.png";
+import gasIcon from "../../assets/icons/gas.png";
+import radioicon from "../../assets/icons/radio.png";
+import bathIcon from "../../assets/icons/bathroom.png";
+import microwaveIcon from "../../assets/icons/microwave.png";
+import petrolIcon from "../../assets/icons/petrol.png";
+import refrigIcon from "../../assets/icons/refrig.png";
+import waterIcon from "../../assets/icons/water.png";
+
+// ICON MAP
+const icons = {
+  AC: acIcon,
+  Automatic: autoIcon,
+  Kitchen: kitchenIcon,
+  Radio: radioicon,
+  Bathroom: bathIcon,
+  Gas: gasIcon,
+  Microwave: microwaveIcon,
+  Petrol: petrolIcon,
+  Refrigerator: refrigIcon,
+  Water: waterIcon,
+};
+
 const Catalog = () => {
+  const [campers, setCampers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 1️⃣ API'DEN VERİ ÇEKME
+  useEffect(() => {
+    fetch("https://66f3d67077b5.ngrok.app/api/campers")
+      .then((res) => res.json())
+      .then((data) => {
+        setCampers(data);
+        setLoading(false);
+      })
+      .catch((err) => console.error("API ERROR:", err));
+  }, []);
+
+  if (loading) return <p className="loading">Loading campers...</p>;
+
   return (
     <div className="catalog-page">
       {/* LEFT FILTERS */}
@@ -14,7 +57,6 @@ const Catalog = () => {
 
         <div className="filter-group">
           <p className="filter-title">Vehicle equipment</p>
-
           <label><input type="checkbox" /> AC</label>
           <label><input type="checkbox" /> Automatic</label>
           <label><input type="checkbox" /> Kitchen</label>
@@ -24,46 +66,54 @@ const Catalog = () => {
 
         <div className="filter-group">
           <p className="filter-title">Vehicle type</p>
-
           <label><input type="radio" name="type" /> Van</label>
           <label><input type="radio" name="type" /> Alcove</label>
           <label><input type="radio" name="type" /> Fully Integrated</label>
         </div>
       </aside>
 
-      {/* RIGHT CAMPER LIST */}
+      {/* RIGHT - CAMPER LIST */}
       <section className="campers">
-        {[
-          "Mavericks",
-          "Kuga Camper",
-          "Road Bear C 23-25",
-          "Mighty Class C Medium [MD]"
-        ].map((title) => (
-          <div className="camper-card" key={title}>
+        {campers.map((camper) => (
+          <div className="camper-card" key={camper.id}>
+            
+            {/* CAMPER IMAGE */}
             <img
               className="camper-img"
-              src="/hero.jpg"
-              alt={title}
+              src={camper.gallery?.[0]?.thumb || "/fallback.jpg"}
+              alt={camper.name}
             />
 
             <div className="camper-info">
+              
               <div className="camper-top">
-                <h3>{title}</h3>
-                <span className="price">€8000.00</span>
+                <h3>{camper.name}</h3>
+                <span className="price">€{camper.price}</span>
               </div>
 
-              <span className="rating">⭐ 4.4 (2 Reviews)</span>
-              <p className="location-text">Kyiv, Ukraine</p>
+              <span className="rating">
+                ⭐ {camper.rating} ({camper.reviews} Reviews)
+              </span>
 
-              <p className="desc">
-                Embrace simplicity and freedom with the Mavericks panel truck...
+              <p className="location-text">
+                {camper.location.city}, {camper.location.country}
               </p>
 
+              <p className="desc">{camper.description}</p>
+
+              {/* FEATURES (Equipment) */}
               <div className="features">
-                <span>Automatic</span>
-                <span>Petrol</span>
-                <span>Kitchen</span>
-                <span>AC</span>
+                {Object.keys(camper.equipment || {}).map((feat) =>
+                  icons[feat] ? (
+                    <img
+                      key={feat}
+                      src={icons[feat]}
+                      alt={feat}
+                      title={feat}
+                      className="feature-icon"
+                    />
+                  ) : null
+                )}
               </div>
 
               <button className="show-btn">Show More</button>
