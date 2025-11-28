@@ -1,0 +1,22 @@
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.features-list,
+.details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li,
+.details li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.equipment p {
+  margin: 4px 0;
+}
