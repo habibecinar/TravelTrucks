@@ -5,7 +5,7 @@ body {
 .hero {
   width: 1440px;
   height: 696px;
-  background-image: url("hero.jpg");
+  background-image: url('/src/assets/icons/home.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
