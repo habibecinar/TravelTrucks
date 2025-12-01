@@ -94,3 +94,18 @@
 .loadMore:hover {
   background: #d04040;
 }
+.heart-btn {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #ddd;
+  transition: 0.3s;
+}
+
+.heart-btn.active {
+  color: #E44848;
+}
+.heart-btn:hover {
+  color: #E44848;
+}
