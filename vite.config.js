@@ -10,6 +10,7 @@ export default defineConfig({
         target: "https://66f3d67077b5.ngrok.app",
         changeOrigin: true,
         secure: false,
+        open: true,
       },
     },
   },

@@ -102,3 +102,16 @@ export default function Catalog({ filters }) {
     </div>
   );
 }
+const [favorites, setFavorites] = useState([]);
+
+const toggleFavorite = (id) => {
+  setFavorites((prev) =>
+    prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+  );
+};
+<button
+  className={`heart-btn ${favorites.includes(camper.id) ? "active" : ""}`}
+  onClick={() => toggleFavorite(camper.id)}
+>
+  ♥
+</button>
