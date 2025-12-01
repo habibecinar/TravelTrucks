@@ -1,0 +1,96 @@
+.catalog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start; /* Kartlar sola yaslansın */
+}
+
+.catalog-card {
+  display: flex;
+  width: 720px;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  background: #fff;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+  text-decoration: none; /* link alt çizgi olmasın */
+  color: inherit; /* yazılar renk değişmesin */
+   flex: 0 0 300px; /* Her kartın genişliği sabit 300px */
+   margin-top: 8px;
+}
+
+
+.catalog-card:hover {
+  transform: translateY(-4px);
+}
+
+.catalog-thumb {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.catalog-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
+}
+
+.catalog-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.catalog-location {
+  font-size: 12px;
+  color: #6c7177;
+  margin-bottom: 8px;
+}
+
+.catalog-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ff3f3f;
+  margin-bottom: 6px;
+}
+
+.catalog-rating {
+  font-size: 13px;
+  color: #ffb400;
+  margin-bottom: 8px;
+}
+.catalog-description {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* maksimum 3 satır göster */
+  -webkit-box-orient: vertical;
+}
+.loadMore {
+  padding: 16px;
+  background: #e44848;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+  margin-top: 24px;
+  width: 100%;
+  text-decoration: none;
+
+}
+.loadMore:hover {
+  background: #d04040;
+}
