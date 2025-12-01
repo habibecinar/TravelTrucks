@@ -20,3 +20,22 @@
 .equipment p {
   margin: 4px 0;
 }
+.features, .reviews-tab {
+  margin-top: 20px;
+}
+
+.review-box {
+  border-top: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ddd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}

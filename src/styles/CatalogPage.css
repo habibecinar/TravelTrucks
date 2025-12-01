@@ -1,0 +1,8 @@
+.catalog-layout {
+  display: flex;       /* yan yana dizmek için */
+  gap: 24px;           /* aralarındaki boşluk */
+  padding: 24px;
+  align-items: flex-start; 
+  width: 100%;
+  
+}

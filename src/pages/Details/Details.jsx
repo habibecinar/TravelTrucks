@@ -6,6 +6,7 @@ import Gallery from "../../components/Gallery/Gallery";
 import Features from "../../components/CamperTabs/Features";
 import Reviews from "../../components/CamperTabs/Reviews";
 import BookingForm from "../../components/BookingForm/BookingForm";
+import "./Details.css";
 
 const Details = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const Details = () => {
   }, [id]);
 
   if (!selectedCamper) return <p>Loading...</p>;
+console.log("SELECTED CAMPER:", selectedCamper);
 
   return (
     <div className="details-page">

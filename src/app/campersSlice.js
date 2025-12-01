@@ -41,7 +41,7 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload.items; 
+        state.items = action.payload.items || action.payload; 
       })
       // DETAIL
       .addCase(fetchCamperById.fulfilled, (state, action) => {
