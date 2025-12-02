@@ -1,117 +1,79 @@
 // src/components/Catalog/Catalog.jsx
-
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styles from "./Catalog.module.css";
+import cardStyles from "../CamperCard/CamperCard.module.css";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCampers } from "../../app/campersSlice";
-import styles from "./Catalog.module.css";
-import { Link } from "react-router-dom";
+
+import HeartEmpty from "../../assets/icons/heart.svg";
+import HeartFull from "../../assets/icons/redheart.svg";
 
 export default function Catalog({ filters }) {
   const dispatch = useDispatch();
-  const { items, loading,grid } = useSelector((state) => state.campers);
 
-  React.useEffect(() => {
-    dispatch(fetchCampers());
-  }, [dispatch]);
+  const { items, loading } = useSelector((state) => state.campers);
+  const safeItems = Array.isArray(items) ? items : [];
 
-  // -----------------------------
-  // FİLTRELEME İŞLEMLERİ
-  // -----------------------------
-  const filteredCampers = items.filter((item) => {
-    // Location filter
-    if (
-      filters.location &&
-      !item.location.toLowerCase().includes(filters.location.toLowerCase())
-    ) {
-      return false;
-    }
+  useEffect(() => {
+    dispatch(fetchCampers(filters));
+  }, [filters]);
 
-    // Type filter
-    if (filters.type && item.form.toLowerCase() !== filters.type.toLowerCase()) {
-      return false;
-    }
-
-    // Equipment filter
-    if (filters.equipment.length > 0) {
-      for (let eq of filters.equipment) {
-        switch (eq) {
-          case "AC":
-            if (!item.AC) return false;
-            break;
-
-          case "Kitchen":
-            if (!item.kitchen) return false;
-            break;
-
-          case "TV":
-            if (!item.TV) return false;
-            break;
-
-          case "Bathroom":
-            if (!item.bathroom) return false;
-            break;
-
-          case "Automatic":
-            if (item.transmission !== "automatic") return false;
-            break;
-
-          default:
-            break;
-        }
-      }
-    }
-
-    return true;
+  const [favorites, setFavorites] = useState(() => {
+    const saved = localStorage.getItem("favorites");
+    return saved ? JSON.parse(saved) : [];
   });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id) =>
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
 
   return (
     <div>
       {loading && <p>Loading...</p>}
 
-      {/* -----------------------------
-          GRID İLE KARTLAR
-      ----------------------------- */}
-    <div className={styles.catalog-grid}>
-  {filteredCampers.map((item) => (
-    <Link
-      key={item.id}
-      to={`/catalog/${item.id}`}
-      className={styles["catalog-card"]}
-    >
-      <img
-        src={item.gallery[0].thumb}
-        alt={item.name}
-        className={styles["catalog-thumb"]}
-      />
+      <div style={{ display: "flex", gap: "32px", overflowX: "auto", paddingBottom: "16px" }}>
+        {safeItems.map((camper) => (
+          <div key={camper.id} className={cardStyles.catalogCard}>
+            <div className={cardStyles.imageWrapper}>
+              <img
+                src={camper.gallery?.[0]?.thumb || ""}
+                alt={camper.name || "camper"}
+                className={cardStyles.catalogThumb}
+              />
+              <button
+                className={cardStyles.heartButton}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleFavorite(camper.id);
+                }}
+              >
+                <img
+                  src={favorites.includes(camper.id) ? HeartFull : HeartEmpty}
+                  alt="favorite"
+                  className={cardStyles.heartIcon}
+                />
+              </button>
+            </div>
 
-      <div className={styles["catalog-info"]}>
-        <h3 className={styles["catalog-title"]}>{item.name}</h3>
-        <p className={styles["catalog-location"]}>{item.location}</p>
-        <p className={styles["catalog-price"]}>${item.price}</p>
-        <p className={styles["catalog-rating"]}>⭐ {item.rating}</p>
-        <p className={styles["catalog-description"]}>{item.description}</p>
+            <div className={cardStyles.catalogInfo}>
+              <div className={cardStyles.catalogTitle}>{camper.name || "Unnamed"}</div>
+              <div className={cardStyles.catalogLocation}>{camper.location || "-"}</div>
+              <div className={cardStyles.catalogPrice}>${camper.price ?? "-"}</div>
+              <div className={cardStyles.catalogRating}>⭐ {camper.rating ?? "-"}</div>
+              <div className={cardStyles.catalogDescription}>{camper.description ?? ""}</div>
+              <Link to={`/catalog/${camper.id}`} className={styles.showMoreBtn}>
+                Show more
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
-    </Link>
-  ))}
-</div>
-
-
-      <Link to="/catalog" className={styles.loadMore}>
-        Load more
-      </Link>
     </div>
   );
 }
-const [favorites, setFavorites] = useState([]);
-
-const toggleFavorite = (id) => {
-  setFavorites((prev) =>
-    prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-  );
-};
-<button
-  className={`heart-btn ${favorites.includes(camper.id) ? "active" : ""}`}
-  onClick={() => toggleFavorite(camper.id)}
->
-  ♥
-</button>

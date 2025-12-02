@@ -1,11 +1,10 @@
 // src/pages/CatalogPage.jsx
-
 import React from "react";
 import FilterBar from "../components/FilterBar/FilterBar";
 import Catalog from "../components/Catalog/Catalog";
 import "../styles/CatalogPage.css";
 
-const CatalogPage = () => {
+export default function CatalogPage() {
   const [filters, setFilters] = React.useState({
     location: "",
     equipment: [],
@@ -30,7 +29,7 @@ const CatalogPage = () => {
     });
   };
 
-  // Vehicle type seçimi
+  // Vehicle Type set
   const setVehicleType = (type) => {
     setFilters((prev) => ({ ...prev, type }));
   };
@@ -47,6 +46,4 @@ const CatalogPage = () => {
       <Catalog filters={filters} />
     </div>
   );
-};
-
-export default CatalogPage;
+}
