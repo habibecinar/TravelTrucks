@@ -1,0 +1,90 @@
+/* CSS Variables - Design System */
+:root {
+  /* Colors */
+  --primary-red: #e44848;
+  --primary-red-hover: #d04040;
+  --primary-red-light: #ffeaea;
+  
+  /* Text Colors */
+  --text-primary: #101828;
+  --text-secondary: #475467;
+  --text-muted: #6c717b;
+  --text-light: #98a2b3;
+  
+  /* Background Colors */
+  --bg-white: #ffffff;
+  --bg-light: #f7f7f7;
+  --bg-lighter: #f9fafb;
+  --bg-main: #fafafa;
+  
+  /* Border Colors */
+  --border-light: #eaecf0;
+  --border-default: #dadde1;
+  --border-strong: #98a2b3;
+  
+  /* Semantic Colors */
+  --success: #4caf50;
+  --warning: #ff9800;
+  --error: #f44336;
+  --info: #2196f3;
+  
+  /* Rating */
+  --rating-color: #ffc531;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 4px 8px -2px rgba(16, 24, 40, 0.1), 0 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 12px 16px -4px rgba(16, 24, 40, 0.08), 0 4px 6px -2px rgba(16, 24, 40, 0.03);
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Typography */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 48px;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-base: 1.5;
+  --line-height-loose: 1.75;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
+  /* Container */
+  --container-max-width: 1440px;
+  --container-padding: 64px;
+  
+  /* Breakpoints (for reference in media queries) */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1440px;
+}

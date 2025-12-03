@@ -1,111 +1,209 @@
-.catalog-grid {
+
+.catalogContainer {
+  flex: 1;
   display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: flex-start; /* Kartlar sola yaslansın */
+  flex-direction: column;
 }
 
-.catalog-card {
+.campersGrid {
   display: flex;
-  width: 720px;
   flex-direction: column;
-  padding: 16px;
+  gap: 32px;
+}
+
+.camperCard {
+  display: flex;
+  padding: 24px;
   border: 1px solid #dadde1;
   border-radius: 20px;
   background: #fff;
-  height: auto;
+  gap: 24px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: transform 0.2s;
-  text-decoration: none; /* link alt çizgi olmasın */
-  color: inherit; /* yazılar renk değişmesin */
-   flex: 0 0 300px; /* Her kartın genişliği sabit 300px */
-   margin-top: 8px;
-}
-
-
-.catalog-card:hover {
-  transform: translateY(-4px);
-}
-
-.catalog-thumb {
+  max-width: 888px;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 12px;
 }
 
-.catalog-info {
+.camperCard:hover {
+  transform: translateY(-2px);
+}
+
+.imageContainer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.camperImage {
+  width: 292px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.favoriteButton {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.favoriteButton:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.1);
+}
+
+.favoriteActive {
+  background: rgba(228, 72, 72, 0.1);
+}
+
+.cardContent {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  flex: 1;
 }
 
-.catalog-title {
-  font-size: 20px;
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.camperName {
+  font-size: 24px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin: 0;
+  color: #101828;
 }
 
-.catalog-location {
-  font-size: 12px;
-  color: #6c7177;
-  margin-bottom: 8px;
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #101828;
 }
 
-.catalog-price {
+.locationRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.location {
   font-size: 16px;
-  font-weight: 500;
-  color: #ff3f3f;
-  margin-bottom: 6px;
+  color: #475467;
+  text-decoration: underline;
 }
 
-.catalog-rating {
-  font-size: 13px;
-  color: #ffb400;
-  margin-bottom: 8px;
+.rating {
+  font-size: 16px;
+  color: #101828;
 }
-.catalog-description {
-  font-size: 13px;
-  color: #444;
-  line-height: 1.3;
-  margin-bottom: 8px;
+
+.description {
+  font-size: 16px;
+  color: #475467;
+  line-height: 1.5;
+  margin-bottom: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* maksimum 3 satır göster */
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.loadMore {
-  padding: 16px;
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f7f7f7;
+  border-radius: 100px;
+  font-size: 16px;
+  color: #101828;
+  border: 1px solid #dadde1;
+}
+
+.showMoreButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
   background: #e44848;
   color: #fff;
-  border-radius: 12px;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.25s;
-  margin-top: 24px;
-  width: 100%;
   text-decoration: none;
-
-}
-.loadMore:hover {
-  background: #d04040;
-}
-.heart-btn {
-  border: none;
-  background: none;
-  font-size: 22px;
+  border-radius: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.25s;
+  margin-top: auto;
+  width: fit-content;
   cursor: pointer;
-  color: #ddd;
-  transition: 0.3s;
 }
 
-.heart-btn.active {
-  color: #E44848;
+.showMoreButton:hover {
+  background: #d04040;
+  color: #fff;
 }
-.heart-btn:hover {
-  color: #E44848;
+
+.loadMoreButton {
+  padding: 16px 56px;
+  background: transparent;
+  color: #101828;
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin: 50px auto 0;
+  width: fit-content;
+  display: block;
+}
+
+.loadMoreButton:hover {
+  border-color: #e44848;
+  color: #e44848;
+}
+
+.loadMoreButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  font-size: 18px;
+  color: #475467;
+}
+
+.noResults {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  font-size: 18px;
+  color: #475467;
+  text-align: center;
 }

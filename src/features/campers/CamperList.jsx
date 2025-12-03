@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchCampers } from "../features/campers/campersSlice";
+import { fetchCampers } from "../../app/campersSlice";
 
 const CamperList = () => {
   const dispatch = useDispatch();

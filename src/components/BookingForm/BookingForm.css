@@ -1,0 +1,104 @@
+/* BookingForm.css */
+.booking-form-container {
+  position: relative;
+}
+
+.success-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.booking-form {
+  background: #fff;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  padding: 44px 57px;
+  max-width: 641px;
+  margin: 0 auto;
+}
+
+.booking-form h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 8px 0;
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: #475467;
+  margin: 0 0 24px 0;
+  line-height: 1.5;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #101828;
+  background: #f7f7f7;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #e44848;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #6c717b;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 114px;
+}
+
+.btn-send {
+  width: 100%;
+  padding: 16px;
+  background: #e44848;
+  color: white;
+  border: none;
+  border-radius: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s;
+  margin-top: 10px;
+}
+
+.btn-send:hover {
+  background: #d04040;
+}

@@ -1,41 +1,136 @@
-.features {
+.features-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 44px;
 }
 
-.features-list,
-.details {
-  list-style: none;
-  padding: 0;
+.equipment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.equipment-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #f7f7f7;
+  border-radius: 100px;
+  border: 1px solid #dadde1;
+  font-size: 16px;
+  color: #101828;
+}
+
+.equipment-icon {
+  font-size: 20px;
+}
+
+.equipment-name {
+  text-transform: capitalize;
+}
+
+.vehicle-details h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 24px 0;
+}
+
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.detail-label {
+  color: #101828;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #101828;
+  font-weight: 400;
+}
+
+/* Reviews styles */
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.review-item {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dadde1;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.reviewer-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f2f4f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e44848;
+  flex-shrink: 0;
+}
+
+.review-content {
+  flex: 1;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.reviewer-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #101828;
   margin: 0;
 }
 
-.features-list li,
-.details li {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+.review-stars {
+  display: flex;
+  gap: 2px;
 }
 
-.equipment p {
-  margin: 4px 0;
-}
-.features, .reviews-tab {
-  margin-top: 20px;
+.star {
+  color: #ffc531;
+  font-size: 16px;
 }
 
-.review-box {
-  border-top: 1px solid #eee;
-  padding: 12px 0;
+.star.empty {
+  color: #f2f4f7;
 }
 
-.avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #ddd;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
+.review-text {
+  font-size: 16px;
+  color: #475467;
+  line-height: 1.5;
+  margin: 0;
 }

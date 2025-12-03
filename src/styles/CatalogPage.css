@@ -1,8 +1,18 @@
+/* Catalog Page Layout */
 .catalog-layout {
-  display: flex;       /* yan yana dizmek için */
-  gap: 24px;           /* aralarındaki boşluk */
-  padding: 24px;
-  align-items: flex-start; 
-  width: 100%;
-  
+  display: flex;
+  gap: 64px;
+  padding: 50px 64px;
+  align-items: flex-start;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: calc(100vh - 72px); /* Account for header height */
+}
+
+@media (max-width: 1024px) {
+  .catalog-layout {
+    flex-direction: column;
+    gap: 32px;
+    padding: 24px;
+  }
 }

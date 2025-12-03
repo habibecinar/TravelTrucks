@@ -1,79 +1,117 @@
 // src/components/Catalog/Catalog.jsx
-import React, { useState, useEffect } from "react";
-import styles from "./Catalog.module.css";
-import cardStyles from "../CamperCard/CamperCard.module.css";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchCampers } from "../../app/campersSlice";
-
-import HeartEmpty from "../../assets/icons/heart.svg";
-import HeartFull from "../../assets/icons/redheart.svg";
+import { fetchCampers, loadMoreCampers } from "../../app/campersSlice";
+import { toggleFavorite } from "../../features/campers/favorites/favoritesSlice";
+import styles from "./Catalog.module.css";
 
 export default function Catalog({ filters }) {
   const dispatch = useDispatch();
 
-  const { items, loading } = useSelector((state) => state.campers);
+  const { items, loading, currentPage, hasMore, itemsPerPage } = useSelector((state) => state.campers);
+  const favorites = useSelector((state) => state.favorites.items);
   const safeItems = Array.isArray(items) ? items : [];
 
+  // Initial load
   useEffect(() => {
-    dispatch(fetchCampers(filters));
-  }, [filters]);
+    if (safeItems.length === 0) {
+      dispatch(fetchCampers({ filters, page: 1, limit: itemsPerPage, loadMore: false }));
+    }
+  }, [dispatch, itemsPerPage, filters, safeItems.length]);
 
-  const [favorites, setFavorites] = useState(() => {
-    const saved = localStorage.getItem("favorites");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const handleLoadMore = () => {
+    dispatch(loadMoreCampers({ 
+      page: currentPage + 1, 
+      limit: itemsPerPage
+    }));
+  };
 
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }, [favorites]);
+  const handleToggleFavorite = (id) => {
+    dispatch(toggleFavorite(id));
+  };
 
-  const toggleFavorite = (id) =>
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+  if (loading && safeItems.length === 0) {
+    return <div className={styles.loading}>Loading campers...</div>;
+  }
 
   return (
-    <div>
-      {loading && <p>Loading...</p>}
-
-      <div style={{ display: "flex", gap: "32px", overflowX: "auto", paddingBottom: "16px" }}>
+    <div className={styles.catalogContainer}>
+      <div className={styles.campersGrid}>
         {safeItems.map((camper) => (
-          <div key={camper.id} className={cardStyles.catalogCard}>
-            <div className={cardStyles.imageWrapper}>
+          <div key={camper.id} className={styles.camperCard}>
+            <div className={styles.imageContainer}>
               <img
-                src={camper.gallery?.[0]?.thumb || ""}
+                src={camper.gallery?.[0]?.thumb || camper.gallery?.[0]?.original || "/karavan1.png"}
                 alt={camper.name || "camper"}
-                className={cardStyles.catalogThumb}
+                className={styles.camperImage}
               />
               <button
-                className={cardStyles.heartButton}
+                className={`${styles.favoriteButton} ${
+                  favorites.includes(camper.id) ? styles.favoriteActive : ""
+                }`}
                 onClick={(e) => {
                   e.preventDefault();
-                  toggleFavorite(camper.id);
+                  handleToggleFavorite(camper.id);
                 }}
               >
-                <img
-                  src={favorites.includes(camper.id) ? HeartFull : HeartEmpty}
-                  alt="favorite"
-                  className={cardStyles.heartIcon}
-                />
+                {favorites.includes(camper.id) ? "❤️" : "🤍"}
               </button>
             </div>
 
-            <div className={cardStyles.catalogInfo}>
-              <div className={cardStyles.catalogTitle}>{camper.name || "Unnamed"}</div>
-              <div className={cardStyles.catalogLocation}>{camper.location || "-"}</div>
-              <div className={cardStyles.catalogPrice}>${camper.price ?? "-"}</div>
-              <div className={cardStyles.catalogRating}>⭐ {camper.rating ?? "-"}</div>
-              <div className={cardStyles.catalogDescription}>{camper.description ?? ""}</div>
-              <Link to={`/catalog/${camper.id}`} className={styles.showMoreBtn}>
+            <div className={styles.cardContent}>
+              <div className={styles.headerRow}>
+                <h3 className={styles.camperName}>{camper.name || "Unnamed Camper"}</h3>
+                <div className={styles.price}>€{parseFloat(camper.price || 0).toFixed(2)}</div>
+              </div>
+
+              <div className={styles.locationRow}>
+                <span className={styles.location}>📍 {camper.location || "Location not specified"}</span>
+                <div className={styles.rating}>
+                  ⭐ {camper.rating || "0"} ({camper.reviews?.length || 0} Reviews)
+                </div>
+              </div>
+
+              <p className={styles.description}>
+                {camper.description || "No description available"}
+              </p>
+
+              <div className={styles.features}>
+                {camper.AC && <span className={styles.feature}>❄️ AC</span>}
+                {camper.transmission === "automatic" && <span className={styles.feature}>⚙️ Automatic</span>}
+                {camper.kitchen && <span className={styles.feature}>🍽️ Kitchen</span>}
+                {camper.TV && <span className={styles.feature}>📻 TV</span>}
+                {camper.bathroom && <span className={styles.feature}>🚿 Bathroom</span>}
+              </div>
+
+              <Link 
+                to={`/catalog/${camper.id}`} 
+                className={styles.showMoreButton}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Show more
               </Link>
             </div>
           </div>
         ))}
       </div>
+
+      {hasMore && (
+        <button 
+          className={styles.loadMoreButton}
+          onClick={handleLoadMore}
+          disabled={loading}
+        >
+          {loading ? "Loading..." : "Load more"}
+        </button>
+      )}
+
+      {safeItems.length === 0 && !loading && (
+        <div className={styles.noResults}>
+          No campers found matching your criteria. Try adjusting your filters.
+        </div>
+      )}
     </div>
   );
 }

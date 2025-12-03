@@ -1,7 +1,7 @@
 import React from "react";
 import "./FilterBar.css";
 
-const FilterBar = ({ filters, handleChange, toggleEquipment, setVehicleType }) => {
+const FilterBar = ({ filters, handleChange, toggleEquipment, setVehicleType, onSearch }) => {
   const equipmentOptions = ["AC", "Automatic", "Kitchen", "TV", "Bathroom"];
   const typeOptions = ["Van", "Fully Integrated", "Alcove"];
 
@@ -58,9 +58,7 @@ const FilterBar = ({ filters, handleChange, toggleEquipment, setVehicleType }) =
         </div>
       </div>
 
-     <button className="search-btn" onClick={filters.applyFilters}>
-  Search
-</button>
+      <button className="search-btn" onClick={onSearch}>Search</button>
 
     </aside>
   );
