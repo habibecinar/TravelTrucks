@@ -12,6 +12,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://habibecinar.github.io/TravelTrucks",
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.0",
     "axios": "^1.13.2",
