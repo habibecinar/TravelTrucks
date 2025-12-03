@@ -166,6 +166,18 @@ The application is optimized for deployment on:
 - **Netlify**
 - Any static hosting service
 
+### Deploy to GitHub Pages
+
+#### Option 1: Automatic Deployment (Recommended)
+1. Push your code to GitHub
+2. GitHub Actions will automatically build and deploy to GitHub Pages
+3. Visit `https://yourusername.github.io/TravelTrucks/`
+
+#### Option 2: Manual Deployment
+```bash
+npm run deploy
+```
+
 ### Deploy to Vercel
 1. Push your code to GitHub
 2. Connect your repository to Vercel

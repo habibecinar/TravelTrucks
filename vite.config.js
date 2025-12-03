@@ -4,7 +4,12 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-   server: {
+  base: '/TravelTrucks/', // GitHub Pages repository name
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
+  },
+  server: {
     proxy: {
       "/api": {
         target: "https://66f3d67077b5.ngrok.app",
