@@ -1,6 +1,6 @@
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
-import heroImage from "../../assets/images/hero.js";
+import heroImg from "/hero.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -8,7 +8,12 @@ const Home = () => {
   return (
     <section 
       className="hero"
-      style={{ backgroundImage: `url(${heroImage})` }}
+      style={{ 
+        backgroundImage: `url(${heroImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
     >
       <div className="hero-content">
         <h1>Campers of your dreams</h1>
